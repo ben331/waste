@@ -62,7 +62,7 @@ public class Main
 				
 				//Genera un reporte de los residuos agregados
 				case 5:
-				System.out.println(reciclamos.gerateWasteReport());
+				System.out.println(reciclamos.generateWasteReport());
 				break;
 				
 				//Busca información de un residuo en específico
@@ -337,7 +337,7 @@ public class Main
 					}
 				}
 			}while(false);
-			System.out.println("Type the proper use of this residue in the homes and in the industry");
+			System.out.println("\nType the proper use of this residue in the homes and in the industry");
 			varProperUse= reader.nextLine();
 			
 			//Agregar Residuo a la lista de residuos
@@ -375,7 +375,7 @@ public class Main
 			
 			if(reciclamos.existingProduct(varProductId, varProductName))
 			{
-				System.out.println("There are a product with id "+varProductId+" or name "+ varProductName);
+				System.out.println("\nThere are a product with id "+varProductId+" or name "+ varProductName);
 			}
 		}while(reciclamos.existingResidue(varResidueName, varProductName));
 		
@@ -395,7 +395,7 @@ public class Main
 			{
 				System.out.println(reciclamos.showWasteList());
 				
-				System.out.println("n\nType the residue name producted by this product or type 'back' to exit");
+				System.out.println("\nType the residue name producted by this product or type 'back' to exit");
 				varResidueName=reader.nextLine();
 				
 				if(varResidueName.equalsIgnoreCase("back"))

@@ -2,11 +2,13 @@ package model;
 import java.util.ArrayList;
 public class Product
 {
+	//Atributos
 	private String id;
 	private String name;
 	private String description;
 	private ArrayList<Residue> wasteProducted = new ArrayList<Residue>();
 	
+	//Constructor
 	public Product(String id, String name, String description)
 	{
 		this.id=id;
@@ -14,12 +16,19 @@ public class Product
 		this.description=description;
 	}
 	
+	//Getters
 	public String getId(){return id;}
 	public String getName(){return name;}
 	public String getDescription(){return description;}
 	
 	
-	//Añadir un residuo general existente
+	/**
+	*<b>DES: </b>Este método añade un objeto Residuo al arraylist wasteProducted.<br>
+	*<b>PRE: </b>El dato recibido es de tipo Residue no nulo. Debe tener visibilidad a la clase Residue del paquete model<br>
+	*<b>POST: </b>El residuo recibido se añade al arrayList wasteProducted, el cual aumenta en un elemento.<br>
+	*@param residue Es un objeto de tipo Residue. residue!=null;
+	*@return message Es un texto que confirma que se ha añadido el residuo al arrayList wasteProducted. message!=null
+	*/
 	public String addResidue(Residue residue)
 	{
 		wasteProducted.add(residue);
@@ -28,6 +37,18 @@ public class Product
 	
 	
 	//Añade un residuo biodegradable
+	/**
+	*<b>DES: </b>Este método determina si un residuo es aprovechable con base en su tiempo de descomposición.<br>
+	*<b>PRE: </b>La constante inmutable DESTIME_MAX_FOR_BE_USEBLE debe estar declarada e inicializada<br>
+	*<b>POST: </b>Se obtiene un valor lógico que representa la capacidad de un residuo para compostaje.<br>
+	*@param _id Es un texto que representa el id del residuo. _id!=null
+	*@param _name Es un texto que representa el nombre del residuo. _name!=null
+	*@param origin Es un texto que representa la procedencia del residuo. origin!=null origin debe tomar un valor de su dominio definido.
+	*@param color Es un texto que representa el color del residuo. color!=null
+	*@param desTime Es un entero que representa el tiempo de descomposición del residuo. desTime!=null
+	*@param canBeComposted Es un valor lógico que representa si el residuo es apto para compostaje. canBeComposted!=null
+	*@return message Es un texto que confirma que se ha añadido el residuo. message!=null
+	*/
 	public String addResidue(String _id, String _name, String origin, String color, int desTime, boolean canBeComposted)
 	{
 		String message="";
@@ -38,6 +59,19 @@ public class Product
 	}
 	
 	//Añade un residuo inerte
+	
+	/**
+	*<b>DES: </b>Este método determina si un residuo es aprovechable con base en su tiempo de descomposición.<br>
+	*<b>PRE: </b>La constante inmutable DESTIME_MAX_FOR_BE_USEBLE debe estar declarada e inicializada<br>
+	*<b>POST: </b>Se obtiene un valor lógico que representa la capacidad de un residuo para compostaje.<br>
+	*@param _id Es un texto que representa el id del residuo. _id!=null
+	*@param _name Es un texto que representa el nombre del residuo. _name!=null
+	*@param origin Es un texto que representa la procedencia del residuo. origin!=null origin debe tomar un valor de su dominio definido.
+	*@param color Es un texto que representa el color del residuo. color!=null
+	*@param desTime Es un entero que representa el tiempo de descomposición del residuo. desTime!=null
+	*@param tips Es un texto que representa los consejos para reducir el uso la generación del residuo. canBeComposted!=null
+	*@return message Es un texto que confirma que se ha añadido el residuo. message!=null
+	*/
 	public String addResidue(String _id, String _name, String origin, String color, int desTime, String tips)
 	{
 		String message="";
@@ -48,6 +82,20 @@ public class Product
 	}
 	
 	//Añadir un residuo recyclable
+	
+	/**
+	*<b>DES: </b>Este método determina si un residuo es aprovechable con base en su tiempo de descomposición.<br>
+	*<b>PRE: </b>La constante inmutable DESTIME_MAX_FOR_BE_USEBLE debe estar declarada e inicializada<br>
+	*<b>POST: </b>Se obtiene un valor lógico que representa la capacidad de un residuo para compostaje.<br>
+	*@param _id Es un texto que representa el id del residuo. _id!=null
+	*@param _name Es un texto que representa el nombre del residuo. _name!=null
+	*@param origin Es un texto que representa la procedencia del residuo. origin!=null origin debe tomar un valor de su dominio definido.
+	*@param color Es un texto que representa el color del residuo. color!=null
+	*@param desTime Es un entero que representa el tiempo de descomposición del residuo. desTime!=null
+	*@param type Es un texto que representa el material principal del residuo. type!=null. type debe tomar un valor de su dominio definido.
+	*@param properUse Es un texto contiene el uso apropiado del residuo. properUse!=null.
+	*@return message Es un texto que confirma que se ha añadido el residuo. message!=null
+	*/
 	public String addResidue(String _id, String _name, String origin, String color, int desTime, String type, String properUse)
 	{
 		String message="";
@@ -57,20 +105,12 @@ public class Product
 		return message;
 	}
 	
-	public String removeResidue(String _name)
-	{
-		String message="Residue "+_name+" does not exist";
-		for(int i=0; i<wasteProducted.size();i++)
-		{
-			if(wasteProducted.get(i).getName().equals(_name))
-			{
-				wasteProducted.remove(i);
-				message="Residue "+_name+" removed";
-			}
-		}
-		return message;
-	}
-	
+	/**
+	*<b>DES: </b>Este método ordena los residuo del arraylist wasteProducted de mayor a menor efecto nocivo y luego los guarda en una cadena de texto.<br>
+	*<b>PRE: </b>El nombre recibido debe ser<br>
+	*<b>POST: </b>Se obtiene un valor lógico que representa la capacidad de un residuo para compostaje.<br>
+	*@return  wasteList Es una cadena de texto que resenta una lista de residuos propios ordenados delde mayor residuio
+	*/
 	public String orderAndShowWasteList()
 	{
 		String wasteList="";
@@ -101,7 +141,7 @@ public class Product
 			//Generar reporte
 			for(int i=0;i<wasteProducted.size();i++)
 			{
-				wasteList+="\n"+i+"."+wasteProducted.get(i).getName()+" harmful effect: "+wasteProducted.get(i).calculateHarmfulEffect();
+				wasteList+="\n"+(i+1)+"."+wasteProducted.get(i).getName()+" harmful effect: "+(wasteProducted.get(i).calculateHarmfulEffect())+" días";
 			}
 		}
 		return wasteList;
@@ -110,6 +150,6 @@ public class Product
 	@Override
 	public String toString()
 	{
-		return super.toString()+"\nId: "+id+" name: "+name+"\nDescription: "+description+"Waste producted: "+wasteProducted.size();
+		return "\nId: "+id+" name: "+name+"\nDescription: "+description+"\nWaste producted: "+wasteProducted.size();
 	}
 }
